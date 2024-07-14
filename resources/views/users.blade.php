@@ -44,7 +44,7 @@
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="{{ asset('assets/admin/build/img.jpg') }}" alt="..." class="img-circle profile_img">
+                <img src="{{ asset('assets/admin/images/img.jpg') }}" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>Welcome,</span>
@@ -100,9 +100,12 @@
               <a data-toggle="tooltip" data-placement="top" title="Lock">
                 <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
               </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout" href="login.html">
+              <a data-toggle="tooltip" data-placement="top" title="Logout" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
               </a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+              </form>
             </div>
             <!-- /menu footer buttons -->
           </div>
@@ -118,7 +121,10 @@
                 <ul class=" navbar-right">
                   <li class="nav-item dropdown open" style="padding-left: 15px;">
                     <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-                      <img src="{{ asset('assets/admin/build/img.jpg') }}" alt="">John Doe
+                      <img src="{{ asset('assets/admin/images/img.jpg') }}" alt="">John Doe
+                    </a>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
                       <a class="dropdown-item"  href="javascript:;"> Profile</a>
@@ -127,7 +133,10 @@
                           <span>Settings</span>
                         </a>
                     <a class="dropdown-item"  href="javascript:;">Help</a>
-                      <a class="dropdown-item"  href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                      <a class="dropdown-item"  href="{{ route('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();" ><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                      </form>
                     </div>
                   </li>
   
@@ -139,7 +148,7 @@
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
                         <a class="dropdown-item">
-                          <span class="image"><img src="{{ asset('assets/admin/build/img.jpg') }}" alt="Profile Image" /></span>
+                          <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>
                             <span class="time">3 mins ago</span>
@@ -151,7 +160,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="dropdown-item">
-                          <span class="image"><img src="{{ asset('assets/admin/build/img.jpg') }}" alt="Profile Image" /></span>
+                          <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>
                             <span class="time">3 mins ago</span>
@@ -163,7 +172,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="dropdown-item">
-                          <span class="image"><img src="{{ asset('assets/admin/build/img.jpg') }}" alt="Profile Image" /></span>
+                          <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>
                             <span class="time">3 mins ago</span>
@@ -175,7 +184,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="dropdown-item">
-                          <span class="image"><img src="{{ asset('assets/admin/build/img.jpg') }}" alt="Profile Image" /></span>
+                          <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>
                             <span class="time">3 mins ago</span>
@@ -267,7 +276,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -275,7 +284,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -283,7 +292,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -291,7 +300,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -299,7 +308,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -307,7 +316,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -315,7 +324,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -323,7 +332,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -331,7 +340,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         <tr>
                           <td>1 Jan 2023</td>
@@ -339,7 +348,7 @@
                           <td>tony2023</td>
                           <td>tony@gmail.com</td>
                           <td>Yes</td>
-                          <td><img src="{{ asset('assets/admin/build/edit.png') }}" alt="Edit"></td>
+                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
                         </tr>
                         
                       </tbody>
