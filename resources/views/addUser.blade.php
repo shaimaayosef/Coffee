@@ -36,9 +36,9 @@
 	<div class="container body">
 		<div class="main_container">
 			<div class="col-md-3 left_col">
-				<div class="left_col scroll-view">
+			<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="index.html" class="site_title"><i class="fa fa-graduation-cap"></i> <span>Beverages Admin</span></a>
+						<a href="{{ route('main') }}" class="site_title"><i class="fa fa-graduation-cap"></i> <span>Beverages Admin</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -50,7 +50,7 @@
 						</div>
 						<div class="profile_info">
 							<span>Welcome,</span>
-							<h2>John Doe</h2>
+							<h2>{{ Auth::user()->name }}</h2>
 						</div>
 					</div>
 					<!-- /menu profile quick info -->
@@ -64,25 +64,25 @@
 							<ul class="nav side-menu">
 								<li><a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="users.html">Users List</a></li>
-										<li><a href="addUser.html">Add User</a></li>
+										<li><a href="{{ route('users') }}">Users List</a></li>
+										<li><a href="{{ route('addUser') }}">Add User</a></li>
 									</ul>
 								</li>
 								<li><a><i class="fa fa-edit"></i> Categories <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="addCategory.html">Add Category</a></li>
-										<li><a href="categories.html">Categories List</a></li>
+										<li><a href="{{ route('addCategory') }}">Add Category</a></li>
+										<li><a href="{{ route('categories') }}">Categories List</a></li>
 									</ul>
 								</li>
 								<li><a><i class="fa fa-desktop"></i> Beverages <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="addBeverage.html">Add Beverage</a></li>
-										<li><a href="beverages.html">Beverages List</a></li>
+										<li><a href="{{ route('addBeverage') }}">Add Beverage</a></li>
+										<li><a href="{{ route('beverages') }}">Beverages List</a></li>
 									</ul>
 								</li>
 								<li><a><i class="fa fa-desktop"></i> Messages <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="messages.html">Messages List</a></li>
+										<li><a href="{{ route('messages') }}">Messages List</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -120,7 +120,7 @@
 						<ul class=" navbar-right">
 							<li class="nav-item dropdown open" style="padding-left: 15px;">
 								<a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
-									<img src="{{ asset('assets/admin/images/img.jpg') }}" alt="">John Doe
+									<img src="{{ asset('assets/admin/images/img.jpg') }}" alt="">{{ Auth::user()->name }}
 								</a>
 								<div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
 									<a class="dropdown-item" href="javascript:;"> Profile</a>
@@ -140,7 +140,7 @@
 								</a>
 								<ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
 									<li class="nav-item">
-										<a class="dropdown-item">
+										<a href="{{ route('showMessage') }}" class="dropdown-item">
 											<span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
 											<span>
 												<span>John Smith</span>
