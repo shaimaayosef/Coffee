@@ -62,7 +62,7 @@
 							<ul class="nav side-menu">
 								<li><a><i class="fa fa-users"></i> Users <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
-										<li><a href="{{ route('users') }}">Users List</a></li>
+										<li><a href="{{ route('home') }}">Users List</a></li>
 										<li><a href="{{ route('addUser') }}">Add User</a></li>
 									</ul>
 								</li>

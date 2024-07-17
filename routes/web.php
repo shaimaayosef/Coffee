@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth; // Add this line
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth/login');
 });
 
 Auth::routes(['verify'=>true]);
@@ -24,9 +24,7 @@ Route::get('/addUser', function () {
     return view('addUser');
 })->name('addUser');
 
-Route::get('/users', function () {
-    return view('users');
-})->name('users');
+
 Route::get('/beverages', function () {
     return view('beverages');
 })->name('beverages');
