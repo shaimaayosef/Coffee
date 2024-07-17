@@ -52,4 +52,27 @@ class Controller extends BaseController
     ];
 }
 
+    public function store(Request $request)
+    {
+        $messages = $this->errMsg();
+        $data = $request->validate([
+            'name' => 'required|max:100|min:5',
+            'username' => 'required|max:100|min:5',
+            'email' => 'required|email:rfc',
+            'password' => 'required|max:100|min:5',
+        ], $messages);
+        $isActive = $request->has('active') ? 1 : 0;
+        $hashedPassword = bcrypt($request->password);
+
+        User::create([
+            'name' => $data['name'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'password' => $hashedPassword,
+            'active' => $isActive,
+        ]);
+    
+        return redirect('home');
+    }
+
 }

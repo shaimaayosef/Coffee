@@ -15,6 +15,7 @@ Auth::routes(['verify'=>true]);
 Route::get('home', [HomeController::class, 'index'])->middleware('verified')->name('home');
 Route::get('editUser/{id}', [Controller::class, 'edit'])->name('editUser');
 Route::put('updateUsers/{id}',[Controller::class,'update'])->name('updateUsers');
+Route::post('addNewUser',[Controller::class,'store'])->name('addNewUser');
 Route::get('/addBeverage', function () {
     return view('addBeverage');
 })->name('addBeverage');

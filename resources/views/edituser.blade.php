@@ -253,7 +253,11 @@
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="first-name">Full Name <span class="required">*</span>
 											</label>
-											
+											<p style="color: red">
+												@error('name')
+													{{ $message }}
+												@enderror
+											</p>
 											<div class="col-md-6 col-sm-6 ">
 												<input type="text" id="first-name" name="name" value="{{ old('name', $user->name) }}" class="form-control ">
 											</div>
@@ -261,14 +265,22 @@
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="user-name">Username <span class="required">*</span>
 											</label>
-											
+											<p style="color: red">
+												@error('username')
+													{{ $message }}
+												@enderror
+											</p>
 											<div class="col-md-6 col-sm-6 ">
 												<input type="text" id="user-name" name="username"  value="{{ old('username', $user->username) }}" class="form-control">
 											</div>
 										</div>
 										<div class="item form-group">
 											<label for="email" class="col-form-label col-md-3 col-sm-3 label-align">Email <span class="required">*</span></label>
-											
+											<p style="color: red">
+												@error('email')
+													{{ $message }}
+												@enderror
+											</p>
 											<div class="col-md-6 col-sm-6 ">
 												<input id="email" class="form-control" type="email" name="email" value="{{ old('email', $user->email) }}" >
 											</div>
@@ -291,7 +303,7 @@
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
-												<button class="btn btn-primary" type="button">Cancel</button>
+												<button class="btn btn-primary"><a href="{{ route('home') }}"></a> Cancel</button>
 												<button type="submit" class="btn btn-success">Update</button>
 											</div>
 										</div>
