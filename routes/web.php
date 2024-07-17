@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Auth; // Add this line
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -10,8 +12,9 @@ Route::get('/', function () {
 
 Auth::routes(['verify'=>true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('verified')->name('home');
-
+Route::get('home', [HomeController::class, 'index'])->middleware('verified')->name('home');
+Route::get('editUser/{id}', [Controller::class, 'edit'])->name('editUser');
+Route::put('updateUsers/{id}',[Controller::class,'update'])->name('updateUsers');
 Route::get('/addBeverage', function () {
     return view('addBeverage');
 })->name('addBeverage');
@@ -49,9 +52,7 @@ Route::get('/editCategory', function () {
     return view('editCategory');
 })->name('editCategory');
 
-Route::get('/editUser', function () {
-    return view('editUser');
-})->name('editUser');
+
 Route::get('/main', function () {
     return view('main');
 })->name('main');

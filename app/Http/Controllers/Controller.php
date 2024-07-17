@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -9,4 +11,45 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        $user = User::findOrFail($id);
+        return view('editUser', compact('user'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $message = $this->errMsg();
+        $data = $request->validate([
+            'name' => 'required|max:100|min:5',
+            'username' => 'required|max:100|min:5',
+            'email' => 'required|email:rfc',
+        ],$message);
+        $data['password'] = bcrypt($request->password);
+        $data['active'] = isset($request->active);
+        User::where('id', $id)->update($data);
+        return redirect('home');
+    }
+
+    protected function errMsg()
+{
+    return [
+        'name.required' => 'A name is required',
+        'name.max' => 'The name may not be greater than 100 characters',
+        'name.min' => 'The name must be at least 5 characters',
+        'username.required' => 'A username is required',
+        'username.max' => 'The username may not be greater than 100 characters',
+        'username.min' => 'The username must be at least 5 characters',
+        'email.required' => 'An email is required',
+        'email.email' => 'The email must be a valid email address',
+    ];
+}
+
 }

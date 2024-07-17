@@ -273,7 +273,7 @@
                           <td>{{ $user->username }}</td>
                           <td>{{ $user->email }}</td>
                           <td>{{ $user->active ? 'Yes' : 'No' }}</td>
-                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
+                          <td> <a href="{{ route('editUser', $user->id) }}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a> </td>
                         </tr>
                         @endforeach
                       </tbody>
