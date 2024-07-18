@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Auth; // Add this line
 
 use Illuminate\Support\Facades\Route;
@@ -16,6 +17,8 @@ Route::get('home', [HomeController::class, 'index'])->middleware('verified')->na
 Route::get('editUser/{id}', [Controller::class, 'edit'])->name('editUser');
 Route::put('updateUsers/{id}',[Controller::class,'update'])->name('updateUsers');
 Route::post('addNewUser',[Controller::class,'store'])->name('addNewUser');
+Route::get('categories', [CategoriesController::class,'index'])->name('categories');
+Route::post('addCategories', [CategoriesController::class,'store'])->name('addCategories');
 Route::get('/addBeverage', function () {
     return view('addBeverage');
 })->name('addBeverage');
@@ -33,9 +36,7 @@ Route::get('/beverages', function () {
     return view('beverages');
 })->name('beverages');
 
-Route::get('/categories', function () {
-    return view('categories');
-})->name('categories');
+
 
 Route::get('/messages', function () {
     return view('messages');
