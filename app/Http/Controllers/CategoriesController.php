@@ -61,7 +61,8 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        return view('editCategory', compact('category'));
     }
 
     /**
@@ -69,7 +70,12 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $message = $this->errMsg();
+        $catdata = $request->validate([
+            'category_name' => 'required|max:100|min:4',
+        ],$message);
+        Category::where('id', $id)->update($catdata);
+        return redirect('categories');
     }
 
     /**

@@ -79,7 +79,7 @@
 										<li><a href="{{ route('addBeverage') }}">Add Beverage</a></li>
 										<li><a href="{{ route('beverages') }}">Beverages List</a></li>
 									</ul>
-								</li>
+								</li> 
 								<li><a><i class="fa fa-desktop"></i> Messages <span class="fa fa-chevron-down"></span></a>
 									<ul class="nav child_menu">
 										<li><a href="{{ route('messages') }}">Messages List</a></li>
@@ -247,20 +247,26 @@
 								</div>
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left">
-
+									<form id="demo-form2" method="POST" action="{{ route('updateCategories', $category->id) }}" data-parsley-validate class="form-horizontal form-label-left">
+									@csrf
+									@method('put')
 										<div class="item form-group">
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="add-category">Edit Category <span class="required">*</span>
 											</label>
+											<p style="color: red">
+												@error('category_name')
+													{{ $message }}
+												@enderror
+											</p>
 											<div class="col-md-6 col-sm-6 ">
-												<input type="text" id="add-category" required="required" class="form-control ">
+												<input type="text" id="add-category" name="category_name" value="{{ old('category_name', $category->category_name) }}" required="required" class="form-control ">
 											</div>
 										</div>
 										
 										<div class="ln_solid"></div>
 										<div class="item form-group">
 											<div class="col-md-6 col-sm-6 offset-md-3">
-												<button class="btn btn-primary" type="button">Cancel</button>
+												<button class="btn btn-primary"><a href="{{ route('categories') }}"></a> Cancel</button>
 												<button type="submit" class="btn btn-success">Update</button>
 											</div>
 										</div>

@@ -16,9 +16,11 @@ Auth::routes(['verify'=>true]);
 Route::get('home', [HomeController::class, 'index'])->middleware('verified')->name('home');
 Route::get('editUser/{id}', [Controller::class, 'edit'])->name('editUser');
 Route::put('updateUsers/{id}',[Controller::class,'update'])->name('updateUsers');
+Route::put('updateCategories/{id}',[CategoriesController::class,'update'])->name('updateCategories');
 Route::post('addNewUser',[Controller::class,'store'])->name('addNewUser');
 Route::get('categories', [CategoriesController::class,'index'])->name('categories');
 Route::post('addCategories', [CategoriesController::class,'store'])->name('addCategories');
+Route::get('/editCategory/{id}', [CategoriesController::class,'edit'])->name('editCategory');
 Route::get('/addBeverage', function () {
     return view('addBeverage');
 })->name('addBeverage');
@@ -50,9 +52,7 @@ Route::get('/editBeverage', function () {
     return view('editBeverage');
 })->name('editBeverage');
 
-Route::get('/editCategory', function () {
-    return view('editCategory');
-})->name('editCategory');
+
 
 
 Route::get('/main', function () {
