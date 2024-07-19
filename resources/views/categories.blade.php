@@ -260,7 +260,15 @@
                         <tr>
                           <td>{{ $category->category_name}}</td>
                           <td><a href="{{ route('editCategory', $category->id) }}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a></td>
-                          <td><img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete"></td>
+                          <td>
+                            <form action="{{ route('deleteCategory') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <input type="hidden" name="id" value="{{ $category->id }}">
+                                <button type="submit" style="border: none;background-color: transparent;">
+                                  <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
+                                </button>
+                              </form>
                         </tr>
                       @endforeach
                       </tbody>

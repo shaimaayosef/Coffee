@@ -89,10 +89,14 @@ class BeveragesController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
+    /**
+     * Show the form for editing the specified resource.
+     */
     public function edit(string $id)
     {
         $beverage = Beverage::findOrFail($id);
-        return view('editBeverage', compact('beverage'));
+        $categories = Category::all();
+        return view('editBeverage', compact('beverage', 'categories'));
     }
 
     /**
@@ -105,13 +109,13 @@ class BeveragesController extends Controller
             'title' => 'required|max:100|min:4',
             'content' => 'max:200',
             'price' => 'required',
-            'published' => true,
-            'is_special' => false,
             'image' => 'required',
-            'category_name' => 'required|max:100',
+            'category_name' => 'max:100',
         ],$messages);
-        $bevdata['published'] = isset($request->published);
-        $bevdata['is_special'] = isset($request->is_special);
+        $isPublished = $request->has('published') ? 1 : 0;
+        $isSpecial = $request->has('is_special') ? 1 : 0;
+        $bevdata['published'] = $isPublished;
+        $bevdata['is_special'] = $isSpecial;
         $imgExt = $request->image->getClientOriginalExtension();
         $fileName = time() . '.' . $imgExt;
         $path = 'assets/admin/images';
@@ -121,11 +125,15 @@ class BeveragesController extends Controller
         return redirect('beverages');
     }
 
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        Beverage::where('id',$id)->delete();
+        return redirect('beverages');
     }
+    
 }

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Beverage;
 use Illuminate\Http\Request;
+
 
 class CategoriesController extends Controller
 {
@@ -78,11 +80,27 @@ class CategoriesController extends Controller
         return redirect('categories');
     }
 
+    public function beverages()
+    {
+        return $this->hasMany(Beverage::class);
+    }
+
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+        
+        $category = Category::findOrFail($id);
+        $beverages = $category->beverages;
+        
+        if ($beverages->count() > 0) {
+            return redirect('categories')->with('error', 'Cannot delete category. There are beverages associated with it.');
+        }
+        
+        $category->delete();
+        
+        return redirect('categories');
     }
 }

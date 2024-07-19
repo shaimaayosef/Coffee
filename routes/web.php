@@ -24,11 +24,13 @@ Route::get('categories', [CategoriesController::class,'index'])->name('categorie
 Route::get('/addCategory', function () {return view('addCategory');})->name('addCategory');
 Route::post('addCategories', [CategoriesController::class,'store'])->name('addCategories');
 Route::get('editCategory/{id}', [CategoriesController::class,'edit'])->name('editCategory');
+Route::delete('deleteCategory',[CategoriesController::class,'destroy'])->name('deleteCategory');
 Route::get('beverages', [BeveragesController::class,'index'])->name('beverages');
 Route::post('addNewBeverage', [BeveragesController::class,'store'])->name('addNewBeverage');
 Route::get('addBeverage', [BeveragesController::class,'show'])->name('addBeverage');
 Route::get('editBeverage/{id}', [BeveragesController::class,'edit'])->name('editBeverage');
 Route::put('updateBeverages/{id}',[BeveragesController::class,'update'])->name('updateBeverages');
+Route::delete('deleteBeverage',[BeveragesController::class,'destroy'])->name('deleteBeverage');
 
 
 

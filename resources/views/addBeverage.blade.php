@@ -256,7 +256,7 @@
 											<p style="color: red">
 												@error('title')
 													{{ $message }}
-												@enderror
+												@enderror 
 											</p>
 											<div class="col-md-6 col-sm-6 ">
 												<input type="text" id="title" required="required" name="title" value="{{ old('title') }}" class="form-control ">
