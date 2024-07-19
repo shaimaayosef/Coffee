@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeveragesController;
 use App\Http\Controllers\CategoriesController;
 use Illuminate\Support\Facades\Auth; // Add this line
 
@@ -17,26 +18,24 @@ Route::get('home', [HomeController::class, 'index'])->middleware('verified')->na
 Route::get('editUser/{id}', [Controller::class, 'edit'])->name('editUser');
 Route::put('updateUsers/{id}',[Controller::class,'update'])->name('updateUsers');
 Route::put('updateCategories/{id}',[CategoriesController::class,'update'])->name('updateCategories');
+Route::get('addUser', function () {return view('addUser');})->name('addUser');
 Route::post('addNewUser',[Controller::class,'store'])->name('addNewUser');
 Route::get('categories', [CategoriesController::class,'index'])->name('categories');
+Route::get('/addCategory', function () {return view('addCategory');})->name('addCategory');
 Route::post('addCategories', [CategoriesController::class,'store'])->name('addCategories');
-Route::get('/editCategory/{id}', [CategoriesController::class,'edit'])->name('editCategory');
-Route::get('/addBeverage', function () {
-    return view('addBeverage');
-})->name('addBeverage');
-
-Route::get('/addCategory', function () {
-    return view('addCategory');
-})->name('addCategory');
-
-Route::get('/addUser', function () {
-    return view('addUser');
-})->name('addUser');
+Route::get('editCategory/{id}', [CategoriesController::class,'edit'])->name('editCategory');
+Route::get('beverages', [BeveragesController::class,'index'])->name('beverages');
+Route::post('addNewBeverage', [BeveragesController::class,'store'])->name('addNewBeverage');
+Route::get('addBeverage', [BeveragesController::class,'show'])->name('addBeverage');
+Route::get('editBeverage/{id}', [BeveragesController::class,'edit'])->name('editBeverage');
+Route::put('updateBeverages/{id}',[BeveragesController::class,'update'])->name('updateBeverages');
 
 
-Route::get('/beverages', function () {
-    return view('beverages');
-})->name('beverages');
+
+
+
+
+
 
 
 
@@ -47,10 +46,6 @@ Route::get('/messages', function () {
 Route::get('/showMessage', function () {
     return view('showMessage');
 })->name('showMessage');
-
-Route::get('/editBeverage', function () {
-    return view('editBeverage');
-})->name('editBeverage');
 
 
 

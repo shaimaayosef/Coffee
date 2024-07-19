@@ -43,7 +43,6 @@ class Controller extends BaseController
     return [
         'name.required' => 'A name is required',
         'name.max' => 'The name may not be greater than 100 characters',
-        'name.min' => 'The name must be at least 5 characters',
         'username.required' => 'A username is required',
         'username.max' => 'The username may not be greater than 100 characters',
         'username.min' => 'The username must be at least 5 characters',
@@ -56,7 +55,7 @@ class Controller extends BaseController
     {
         $messages = $this->errMsg();
         $data = $request->validate([
-            'name' => 'required|max:100|min:5',
+            'name' => 'required|max:100',
             'username' => 'required|max:100|min:5',
             'email' => 'required|email:rfc',
             'password' => 'required|max:100|min:5',

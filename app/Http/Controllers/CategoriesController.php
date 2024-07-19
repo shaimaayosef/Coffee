@@ -42,11 +42,11 @@ class CategoriesController extends Controller
     }
 
     protected function errMsg()
-{
-    return [
-        'category_name.required' => 'A name is required',
-    ];
-}
+    {
+        return [
+            'category_name.required' => 'A name is required',
+        ];
+    }
 
     /**
      * Display the specified resource.

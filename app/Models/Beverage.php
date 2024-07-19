@@ -8,5 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Beverage extends Model
 {
     use HasFactory;
-    protected $fillable = ['beverage_name', 'date_of_adding', 'published'];
+    protected $fillable = [
+        'title',
+        'content',
+        'price',
+        'published',
+        'is_special',
+        'image',
+        'category_name',
+    ];
 }

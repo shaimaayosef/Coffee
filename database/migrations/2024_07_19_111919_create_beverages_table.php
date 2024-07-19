@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('beverages', function (Blueprint $table) {
             $table->id();
-            $table->string('beverage_name');
-            $table->timestamp('date_of_adding')->useCurrent();
-            $table->boolean('published')->default(false);
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->timestamps();
+            $table->string('title');
+            $table->text('content');
+            $table->decimal('price');
+            $table->boolean('published');
+            $table->boolean('is_special');
+            $table->string('category_name');
+            $table->string('image', 100)->nullable();
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
