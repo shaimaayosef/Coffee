@@ -264,7 +264,7 @@
                             <form action="{{ route('deleteCategory') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="id" value="{{ $category->id }}">
+                                <input type="hidden" name="category_name" value="{{ $category->category_name }}">
                                 <button type="submit" style="border: none;background-color: transparent;">
                                   <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
                                 </button>
@@ -273,6 +273,20 @@
                       @endforeach
                       </tbody>
                     </table>
+                    @if(session('error'))
+                      <div style="color: red">
+                          {{ session('error') }}
+                      </div>
+                    @endif
+
+                    @if(session('success'))
+                      <div style="color: green">
+                          {{ session('success') }}
+                      </div>
+                    @endif
+                    <!-- @foreach ($beverages as $beverage)
+                    <p>{{ $beverage->category_name}}</p>
+                    @endforeach -->
                   </div>
                   </div>
               </div>

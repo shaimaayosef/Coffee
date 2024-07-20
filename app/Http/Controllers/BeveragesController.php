@@ -110,18 +110,26 @@ class BeveragesController extends Controller
             'content' => 'max:200',
             'price' => 'required',
             'image' => 'required',
-            'category_name' => 'max:100',
+            'category_name' => 'required|max:100',
         ],$messages);
         $isPublished = $request->has('published') ? 1 : 0;
         $isSpecial = $request->has('is_special') ? 1 : 0;
-        $bevdata['published'] = $isPublished;
-        $bevdata['is_special'] = $isSpecial;
+        // $bevdata['published'] = $isPublished;
+        // $bevdata['is_special'] = $isSpecial;
         $imgExt = $request->image->getClientOriginalExtension();
         $fileName = time() . '.' . $imgExt;
         $path = 'assets/admin/images';
         $request->image->move($path, $fileName);
-        $data['image'] = $fileName;
-        Beverage::where('id', $id)->update($bevdata);
+        // $data['image'] = $fileName;
+        Beverage::where('id', $id)->update([
+            'title' => $bevdata['title'],
+            'content' => $bevdata['content'],
+            'price' => $bevdata['price'],
+            'category_name' => $bevdata['category_name'],
+            'published' => $isPublished,
+            'is_special' => $isSpecial,
+            'image' => $fileName,
+        ]);
         return redirect('beverages');
     }
 

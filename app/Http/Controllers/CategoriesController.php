@@ -15,7 +15,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::get();
-        return view('categories', compact('categories')); 
+        $beverages = Beverage::get();
+        return view('categories', compact('categories','beverages')); 
     }
 
     /**
@@ -23,7 +24,7 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        return view('addCategory');
     }
 
     /**
@@ -80,27 +81,25 @@ class CategoriesController extends Controller
         return redirect('categories');
     }
 
-    public function beverages()
-    {
-        return $this->hasMany(Beverage::class);
-    }
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Request $request)
     {
-        $id = $request->id;
+        $beverages = Beverage::get();
+        $categoryName = $request->category_name;
         
-        $category = Category::findOrFail($id);
-        $beverages = $category->beverages;
+        // Check if category_name exists in beverages
+        $CheckOnBeverage = $beverages->where('category_name', $categoryName)->first();
         
-        if ($beverages->count() > 0) {
-            return redirect('categories')->with('error', 'Cannot delete category. There are beverages associated with it.');
+        if ($CheckOnBeverage) {
+            // Category_name exists in beverages, do not delete
+            return redirect('categories')->with('error', 'Cannot delete category. Category is associated with a beverage.');
         }
         
-        $category->delete();
-        
-        return redirect('categories');
+        // Category_name does not exist in beverages, delete category
+        Category::where('category_name', $categoryName)->delete();
+        return redirect('categories')->with('success', 'Category deleted successfully.');
     }
 }

@@ -21,6 +21,11 @@ class Controller extends BaseController
         return view('editUser', compact('user'));
     }
 
+    public function addForm()
+    {
+        return view('addUser');
+    }
+
     /**
      * Update the specified resource in storage.
      */
