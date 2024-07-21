@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Beverage;
+use App\Models\Category;
 use App\Models\User;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,6 +14,18 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
+
+    /**
+     * Display a listing of the resource.
+     */
+
+    public function showInMain()
+    {
+        $messages = Message::get();
+        $categories = Category::get();
+        $beverages = Beverage::get();
+        return view('main', compact('messages','categories','beverages'));
+    }
 
     /**
      * Show the form for editing the specified resource.

@@ -19,6 +19,7 @@ class MessagesController extends Controller
         return view('messages', compact('messages'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
