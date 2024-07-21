@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth; // Add this line
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MessagesController;
 
 Route::get('/', function () {
     return view('auth/login');
@@ -33,16 +34,10 @@ Route::put('updateBeverages/{id}',[BeveragesController::class,'update'])->name('
 Route::delete('deleteBeverage',[BeveragesController::class,'destroy'])->name('deleteBeverage');
 
 
-Route::get('/messages', function () {
-    return view('messages');
-})->name('messages');
-
-Route::get('/showMessage', function () {
-    return view('showMessage');
-})->name('showMessage');
-
-Route::get('/main', function () {
-    return view('main');
-})->name('main');
+Route::get('messages', [MessagesController::class,'index'])->name('messages');
+Route::get('showMessage/{id}', [MessagesController::class,'show'])->name('showMessage');
+Route::post('sendMessage', [MessagesController::class,'store'])->name('sendMessage');
+Route::delete('delMessage', [MessagesController::class,'destroy'])->name('delMessage');
+Route::get('/main', function () {return view('main');})->name('main');
 
 

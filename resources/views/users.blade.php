@@ -145,7 +145,7 @@
                     </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
-                        <a href="{{ route('showMessage') }}" class="dropdown-item">
+                        <a href="" class="dropdown-item">
                           <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>

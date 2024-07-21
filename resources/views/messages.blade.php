@@ -138,7 +138,7 @@
                     </a>
                     <ul class="dropdown-menu list-unstyled msg_list" role="menu" aria-labelledby="navbarDropdown1">
                       <li class="nav-item">
-                        <a href="{{ route('showMessage') }}" class="dropdown-item">
+                        <a href="" class="dropdown-item">
                           <span class="image"><img src="{{ asset('assets/admin/images/img.jpg') }}" alt="Profile Image" /></span>
                           <span>
                             <span>John Smith</span>
@@ -257,25 +257,23 @@
                         </tr>
                       </thead>
                       <tbody>
+                      @foreach ($messages as $msg)
                         <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete"></td>
+                          <td>{{ $msg->name}}</td>
+                          <td>{{ $msg->email}}</td>
+                          <td><a href="{{ route('showMessage', $msg->id) }}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a></td>
+                          <td>
+                            <form action="{{ route('delMessage') }}" method="POST">
+                              @csrf
+                              @method('DELETE')
+                              <input type="hidden" name="id" value="{{ $msg->id }}">
+                              <button type="submit" style="border: none;background-color: transparent;">
+                                <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
+                              </button>
+                            </form>
+                          </td>
                         </tr>
-                        <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete"></td>
-                        </tr>
-                        <tr>
-                          <td>First Name and Last Name</td>
-                          <td>mail@example.com</td>
-                          <td><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></td>
-                          <td><img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete"></td>
-                        </tr>
-                        
+                        @endforeach
                       </tbody>
                     </table>
                   </div>
