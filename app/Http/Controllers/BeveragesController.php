@@ -38,7 +38,7 @@ class BeveragesController extends Controller
             'content' => 'max:200',
             'price' => 'required',
             'image' => 'required',
-            'category_name' => 'required|max:100',
+            'category_id' => 'required|exists:categories,id',
         ], $messages);
         $isPublished = $request->has('published') ? 1 : 0;
         $isSpecial = $request->has('is_special') ? 1 : 0;
@@ -52,10 +52,10 @@ class BeveragesController extends Controller
             'title' => $data['title'],
             'content' => $data['content'],
             'price' => $data['price'],
-            'category_name' => $data['category_name'],
-            'published' => $isPublished,
-            'is_special' => $isSpecial,
             'image' => $fileName,
+            'category_id' => $data['category_id'],
+            'published' => $isPublished,
+            'is_special' => $isSpecial,  
         ]);
     
         return redirect('beverages');
@@ -71,8 +71,7 @@ class BeveragesController extends Controller
             'title.max' => 'The title may not be greater than :max characters.',
             'content.max' => 'The content may not be greater than :max characters.',
             'price.required' => 'The price field is required.',
-            'category_name.required' => 'The category name field is required.',
-            'category_name.max' => 'The category name may not be greater than :max characters.',
+            'category_id.required' => 'The category name field is required.',
         ];
     }
     /**
@@ -104,32 +103,34 @@ class BeveragesController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $beverage = Beverage::findOrFail($id);
         $messages = $this->errMsg();
         $bevdata = $request->validate([
             'title' => 'required|max:100|min:4',
             'content' => 'max:200',
             'price' => 'required',
             'image' => 'required',
-            'category_name' => 'required|max:100',
+            'category_id' => 'required|exists:categories,id',
         ],$messages);
         $isPublished = $request->has('published') ? 1 : 0;
         $isSpecial = $request->has('is_special') ? 1 : 0;
-        // $bevdata['published'] = $isPublished;
-        // $bevdata['is_special'] = $isSpecial;
         $imgExt = $request->image->getClientOriginalExtension();
         $fileName = time() . '.' . $imgExt;
         $path = 'assets/admin/images';
         $request->image->move($path, $fileName);
-        // $data['image'] = $fileName;
         Beverage::where('id', $id)->update([
             'title' => $bevdata['title'],
             'content' => $bevdata['content'],
             'price' => $bevdata['price'],
-            'category_name' => $bevdata['category_name'],
+            'category_id' => $bevdata['category_id'],
             'published' => $isPublished,
             'is_special' => $isSpecial,
             'image' => $fileName,
         ]);
+        if (isset($data['image'])) {
+            $beverage->image = $data['image']; 
+            $beverage->save();
+        }
         return redirect('beverages');
     }
 

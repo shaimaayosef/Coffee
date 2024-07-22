@@ -38,6 +38,6 @@ Route::get('messages', [MessagesController::class,'index'])->name('messages');
 Route::get('showMessage/{id}', [MessagesController::class,'show'])->name('showMessage');
 Route::post('sendMessage', [MessagesController::class,'store'])->name('sendMessage');
 Route::delete('delMessage', [MessagesController::class,'destroy'])->name('delMessage');
-Route::get('/main', function () {return view('main');})->name('main');
+Route::get('/main', [Controller::class,'showInMain'])->name('main');
 
 

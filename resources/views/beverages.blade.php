@@ -252,7 +252,6 @@
                         <tr>
                           <th>Beverage Date</th>
                           <th>Title</th>
-                          <th>category</th>
                           <th>Published</th>
                           <th>Edit</th>
                           <th>Delete</th>
@@ -263,7 +262,6 @@
                         <tr>
                           <td>{{ $beverage->created_at }} </td>
                           <td>{{ $beverage->title }}</td>
-                          <td>{{ $beverage->category_name }}</td>
                           <td>{{ $beverage->published ? 'Yes' : 'No' }}</td>
                           <td><a href="{{ route('editBeverage', $beverage->id) }}"><img src="{{ asset('assets/admin/images/edit.png') }}" alt="Edit"></a></td>
                           <td>

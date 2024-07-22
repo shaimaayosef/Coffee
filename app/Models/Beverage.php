@@ -9,12 +9,12 @@ class Beverage extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'category_id',
         'title',
         'content',
         'price',
         'published',
         'is_special',
         'image',
-        'category_name',
     ];
 }

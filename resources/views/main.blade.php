@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{asset('assets/fontawesome/css/all.min.css')}}"> <!-- https://fontawesome.com/ -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet" /> <!-- https://fonts.google.com/ -->
     <link rel="stylesheet" href="{{ asset('assets/css/tooplate-wave-cafe.css') }}">
+    <style>
+      .hidden {
+          display: none;
+      }
+    </style>
 <!--
 Tooplate 2121 Wave Cafe
 https://www.tooplate.com/view/2121-wave-cafe
@@ -63,120 +68,28 @@ https://www.tooplate.com/view/2121-wave-cafe
             <!-- Drink Menu Page -->
             <nav class="tm-black-bg tm-drinks-nav">
               <ul>
+              @foreach ($categories as $category)
                 <li>
-                  <a href="#" class="tm-tab-link active" data-id="cold">Iced Coffee</a>
+                  <a href="#" class="tm-tab-link {{ $loop->first ? 'active' : '' }}" data-id="{{ Str::slug($category->category_name) }}">{{$category->category_name}}</a>
                 </li>
-                <li>
-                  <a href="#" class="tm-tab-link" data-id="hot">Hot Coffee</a>
-                </li>
-                <li>
-                  <a href="#" class="tm-tab-link" data-id="juice">Fruit Juice</a>
-                </li>
+              @endforeach
               </ul>
             </nav>
-
-            <div id="cold" class="tm-tab-content">
+            @foreach ($categories as $category)
+            <div id="{{ Str::slug($category->category_name) }}" class="tm-tab-content {{ $loop->first ? '' : 'hidden' }}">
               <div class="tm-list">
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/iced-americano.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Iced Americano<span class="tm-list-item-price">$10.25</span></h3>
-                    <p class="tm-list-item-description">Here is a short description for the first item. Wave Cafe Template is provided by Tooplate.</p>
+                @foreach ($beverages->where('category_id', $category->id) as $beverage)
+                  <div class="tm-list-item">          
+                    <img src="{{ asset('assets/admin/images/'. $beverage->image) }}" alt="Image" class="tm-list-item-img">
+                    <div class="tm-black-bg tm-list-item-text">
+                      <h3 class="tm-list-item-name">{{ $beverage->title }}<span class="tm-list-item-price">{{ $beverage->price }}</span></h3>
+                      <p class="tm-list-item-description">{{ $beverage->content }}</p>
+                    </div>
                   </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/iced-cappuccino.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Iced Cappuccino<span class="tm-list-item-price">$12.50</span></h3>
-                    <p class="tm-list-item-description">Here is a list of 4 items or add more. You can use this template for commercial purposes.</p>
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/iced-espresso.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Iced Espresso<span class="tm-list-item-price">$14.25</span></h3>
-                    <p class="tm-list-item-description">You are not permitted to redistribute this template ZIP file on any other template websites.</p>
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/iced-latte.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Iced Latte<span class="tm-list-item-price">$11.50</span></h3>
-                    <p class="tm-list-item-description">Contents are organized into 3 tabs. Please <a href="https://www.tooplate.com/contact" rel="nofollow" target="_parent">contact Tooplate</a> if you have anything to ask.</p>
-                  </div>
-                </div> 
-                                       
+                @endforeach           
               </div>
             </div> 
-
-            <div id="hot" class="tm-tab-content">
-              <div class="tm-list">
-              
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/hot-americano.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Hot Americano<span class="tm-list-item-price">$8.50</span></h3>
-                    <p class="tm-list-item-description">Here is a short description for the item along with a squared thumbnail.</p>              
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/hot-cappuccino.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Hot Cappuccino<span class="tm-list-item-price">$9.50</span></h3>
-                    <p class="tm-list-item-description">Here is a list of 4 items that can add more as you need. Only content area will be scrolling.</p>                    
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/hot-espresso.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Hot Espresso<span class="tm-list-item-price">$7.50</span></h3>
-                    <p class="tm-list-item-description">Left side logo and main menu are fixed. The video background is fixed.</p>              
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/hot-latte.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Hot Latte<span class="tm-list-item-price">$6.50</span></h3>
-                    <p class="tm-list-item-description">Page contents are organized into 3 tabs to show different lists of items.</p>              
-                  </div>
-                </div>
-                         
-              </div>
-            </div>
-
-            <div id="juice" class="tm-tab-content">
-              <div class="tm-list">
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/smoothie-1.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Strawberry Smoothie<span class="tm-list-item-price">$12.50</span></h3>
-                    <p class="tm-list-item-description">Here is a short description for the item along with a squared thumbnail.</p>              
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/smoothie-2.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Red Berry Smoothie<span class="tm-list-item-price">$14.50</span></h3>
-                    <p class="tm-list-item-description">Here is a list of 4 items or add more. You can use this template for commercial purposes.</p>                    
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/smoothie-3.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Pineapple Smoothie<span class="tm-list-item-price">$16.50</span></h3>
-                    <p class="tm-list-item-description">Left side logo and main menu are fixed. The video background is fixed.</p>              
-                  </div>
-                </div>
-                <div class="tm-list-item">          
-                  <img src="{{ asset('assets/img/smoothie-4.png') }}" alt="Image" class="tm-list-item-img">
-                  <div class="tm-black-bg tm-list-item-text">
-                    <h3 class="tm-list-item-name">Spinach Smoothie<span class="tm-list-item-price">$18.50</span></h3>
-                    <p class="tm-list-item-description">You are not allowed to redistribute the template ZIP file on other template sites.</p>              
-                  </div>
-                </div>              
-              </div>
-            </div>
-            <!-- end Drink Menu Page -->
+            @endforeach
           </div>
 
           <!-- About Us Page -->
@@ -207,48 +120,15 @@ https://www.tooplate.com/view/2121-wave-cafe
           <!-- Special Items Page -->
           <div id="special" class="tm-page-content">
             <div class="tm-special-items">
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-01.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Special One</h2>
-                  <p class="tm-special-item-text">Here is a short text description for the first special item. You are not allowed to redistribute this template ZIP file.</p>  
+              @foreach ($beverages as $beverage)
+                <div class="tm-black-bg tm-special-item">
+                  <img src="{{ asset('assets/admin/images/'.$beverage->image) }}" alt="Image">
+                  <div class="tm-special-item-description">
+                    <h2 class="tm-text-primary tm-special-item-title">{{$beverage->title}}</h2>
+                    <p class="tm-special-item-text">{{$beverage->content}}</p>  
+                  </div>
                 </div>
-              </div>
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-02.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Second Item</h2>
-                  <p class="tm-special-item-text">You are allowed to download, modify and use this template for your commercial or non-commercial websites.</p>  
-                </div>
-              </div>
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-03.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Third Special Item</h2>
-                  <p class="tm-special-item-text">Pellentesque in ultrices mi, quis mollis nulla. Quisque sed commodo est, quis tincidunt nunc.</p>  
-                </div>
-              </div>
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-04.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Special Item Fourth</h2>
-                  <p class="tm-special-item-text">Vivamus finibus nulla sed metus sagittis, sed ultrices magna aliquam. Mauris fermentum.</p>  
-                </div>
-              </div>      
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-05.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Sixth Sense</h2>
-                  <p class="tm-special-item-text">Here is a short text description for sixth item. This text is four lines.</p>  
-                </div>
-              </div>
-              <div class="tm-black-bg tm-special-item">
-                <img src="{{ asset('assets/img/special-06.jpg') }}" alt="Image">
-                <div class="tm-special-item-description">
-                  <h2 class="tm-text-primary tm-special-item-title">Seventh Item</h2>
-                  <p class="tm-special-item-text">Curabitur eget erat sit amet sapien aliquet vulputate quis sed arcu.</p>  
-                </div>
-              </div>                      
+              @endforeach
             </div>            
           </div>
           <!-- end Special Items Page -->
@@ -313,6 +193,24 @@ https://www.tooplate.com/view/2121-wave-cafe
       </video>
   </div>
 
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const tabs = document.querySelectorAll('.tm-tab-link');
+        const contents = document.querySelectorAll('.tm-tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                contents.forEach(content => content.classList.add('hidden'));
+                document.getElementById(this.dataset.id).classList.remove('hidden');
+            });
+        });
+    });
+</script>
   <script src="{{ asset('assets/js/jquery-3.4.1.min.js') }}"></script>    
   <script>
 

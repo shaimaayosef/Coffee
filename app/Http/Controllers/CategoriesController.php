@@ -88,10 +88,10 @@ class CategoriesController extends Controller
     public function destroy(Request $request)
     {
         $beverages = Beverage::get();
-        $categoryName = $request->category_name;
+        $categoryID = $request->id;
         
-        // Check if category_name exists in beverages
-        $CheckOnBeverage = $beverages->where('category_name', $categoryName)->first();
+        // Check if category_id exists in beverages
+        $CheckOnBeverage = $beverages->where('category_id', $categoryID)->first();
         
         if ($CheckOnBeverage) {
             // Category_name exists in beverages, do not delete
@@ -99,7 +99,7 @@ class CategoriesController extends Controller
         }
         
         // Category_name does not exist in beverages, delete category
-        Category::where('category_name', $categoryName)->delete();
+        Category::where('id', $categoryID)->delete();
         return redirect('categories')->with('success', 'Category deleted successfully.');
     }
 }

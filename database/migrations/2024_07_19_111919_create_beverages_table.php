@@ -18,7 +18,6 @@ return new class extends Migration
             $table->decimal('price');
             $table->boolean('published');
             $table->boolean('is_special');
-            $table->string('category_name');
             $table->string('image', 100)->nullable();
             $table->timestamp('created_at');
             $table->timestamp('updated_at')->nullable();

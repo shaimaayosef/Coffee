@@ -9,4 +9,12 @@ class Category extends Model
 {
     use HasFactory;
     protected $fillable = ['category_name'];
+
+    /**
+     * Get the beverages for the category.
+     */
+    public function beverages()
+    {
+        return $this->hasMany(Beverage::class);
+    }
 }

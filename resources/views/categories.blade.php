@@ -264,7 +264,7 @@
                             <form action="{{ route('deleteCategory') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <input type="hidden" name="category_name" value="{{ $category->category_name }}">
+                                <input type="hidden" name="id" value="{{ $category->id }}">
                                 <button type="submit" style="border: none;background-color: transparent;">
                                   <img src="{{ asset('assets/admin/images/delete.png') }}" alt="Delete">
                                 </button>

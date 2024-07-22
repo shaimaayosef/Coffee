@@ -22,7 +22,7 @@ class Controller extends BaseController
     public function showInMain()
     {
         $messages = Message::get();
-        $categories = Category::get();
+        $categories = Category::with('beverages')->get();
         $beverages = Beverage::get();
         return view('main', compact('messages','categories','beverages'));
     }
