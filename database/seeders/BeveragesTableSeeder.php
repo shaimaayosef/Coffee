@@ -31,7 +31,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 3.99,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721420583.png',
             ],
             [
                 'category_id' => 3,
@@ -40,7 +40,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 1.99,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721420083.png',
             ],
             [
                 'category_id' => 1,
@@ -49,7 +49,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 2.49,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721428353.png',
             ],
             [
                 'category_id' => 2,
@@ -58,7 +58,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 3.49,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721420612.png',
             ],
             [
                 'category_id' => 3,
@@ -67,7 +67,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 2.49,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721420704.png',
             ],
             [
                 'category_id' => 1,
@@ -76,7 +76,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 2.99,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721584388.png',
             ],
             [
                 'category_id' => 2,
@@ -85,7 +85,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 3.99,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721584511.png',
             ],
             [
                 'category_id' => 3,
@@ -103,7 +103,7 @@ class BeveragesTableSeeder extends Seeder
                 'price' => 2.99,
                 'published' => true,
                 'is_special' => false,
-                'image' => '1721581171.png',
+                'image' => '1721420680.png',
             ],
         ];
 
