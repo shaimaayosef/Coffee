@@ -155,6 +155,14 @@
 											</li>
 										@endif
 									@endforeach
+									<li class="nav-item">
+										<div class="text-center">
+											<a href="{{ route('messages') }}" class="dropdown-item">
+												<strong>See All Alerts</strong>
+												<i class="fa fa-angle-right"></i>
+											</a>
+										</div>
+									</li>
 								</ul>
 							</li>
 						</ul>
@@ -273,7 +281,7 @@
 											<label class="col-form-label col-md-3 col-sm-3 label-align" for="title">Category <span class="required">*</span>
 											</label>
 											<p style="color: red">
-												@error('category_name')
+												@error('category_id')
 													{{ $message }}
 												@enderror
 											</p>
@@ -281,7 +289,7 @@
 												<select class="form-control" name="category_id" id="category_id">
 													<option value=" ">Select Category</option>
 													@foreach ($categories as $category)
-													<option value="{{ $category->id }}" >{{ $category->category_name }}</option>
+													<option value="{{ $category->id }}">{{ $category->category_name }}</option>
 													@endforeach
 												</select>
 											</div>

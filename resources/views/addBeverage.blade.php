@@ -156,6 +156,14 @@
 											</li>
 										@endif
 									@endforeach
+									<li class="nav-item">
+										<div class="text-center">
+											<a href="{{ route('messages') }}" class="dropdown-item">
+												<strong>See All Alerts</strong>
+												<i class="fa fa-angle-right"></i>
+											</a>
+										</div>
+									</li>
 								</ul>
 							</li>
 						</ul>
