@@ -16,7 +16,8 @@ class MessagesController extends Controller
     public function index()
     {
         $messages = Message::get();
-        return view('messages', compact('messages'));
+        $unreadMessages = Message::where('is_read', false)->count();
+        return view('messages', compact('messages','unreadMessages'));
     }
 
 
@@ -44,6 +45,7 @@ class MessagesController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'message' => $data['message'],
+            'is_read' => false,
         ]);
 
         $mailData=$message->toArray();
@@ -68,8 +70,14 @@ class MessagesController extends Controller
      */
     public function show(string $id)
     {
-        $oneMessage = Message::findOrFail($id);
-        return view('showMessage', compact('oneMessage'));
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
+        $oneMessage = Message::find($id);
+        if ($oneMessage) {
+            $oneMessage->is_read = true;
+            $oneMessage->save();
+        }
+        return view('showMessage', compact('oneMessage','messages','unreadMessages'));
     }
 
     /**

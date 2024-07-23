@@ -21,9 +21,11 @@ class Controller extends BaseController
 
     public function showInMain()
     {
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
         $categories = Category::with('beverages')->get();
         $beverages = Beverage::get();
-        return view('main', compact('categories','beverages'));
+        return view('main', compact('categories','beverages','messages','unreadMessages'));
     }
 
     /**
@@ -32,12 +34,16 @@ class Controller extends BaseController
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
-        return view('editUser', compact('user'));
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
+        return view('editUser', compact('user','messages','unreadMessages'));
     }
 
     public function addForm()
     {
-        return view('addUser');
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
+        return view('addUser', compact('messages','unreadMessages'));
     }
 
     /**

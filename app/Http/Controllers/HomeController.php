@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Message;
 
 class HomeController extends Controller
 {
@@ -25,6 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $users = User::get();
-        return view('users', compact('users')); 
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
+        return view('users', compact('users','messages','unreadMessages')); 
     }
 }

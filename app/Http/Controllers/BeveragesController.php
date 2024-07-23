@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Beverage;
 use App\Models\Category; // Add this line
+use App\Models\Message; // Add this line
 use Illuminate\Http\Request;
 
 
@@ -15,8 +16,10 @@ class BeveragesController extends Controller
      */
     public function index()
     {
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
         $beverages = Beverage::get();
-        return view('beverages', compact('beverages'));
+        return view('beverages', compact('beverages','messages','unreadMessages'));
     }
 
     /**
@@ -80,8 +83,10 @@ class BeveragesController extends Controller
     public function show()
     {
        
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
         $categories = Category::all();
-        return view('addBeverage', compact('categories'));
+        return view('addBeverage', compact('categories','messages','unreadMessages'));
         
     }
 
@@ -93,9 +98,11 @@ class BeveragesController extends Controller
      */
     public function edit(string $id)
     {
+        $messages = Message::get();
+        $unreadMessages = Message::where('is_read', false)->count();
         $beverage = Beverage::findOrFail($id);
         $categories = Category::all();
-        return view('editBeverage', compact('beverage', 'categories'));
+        return view('editBeverage', compact('beverage', 'categories','messages','unreadMessages'));
     }
 
     /**
